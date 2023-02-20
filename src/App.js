@@ -11,19 +11,13 @@ function App() {
 
   return (
     <MealsProvider>
-      
       <Header isActive={setIsModal} />
       <MealsSummary />
       <AvailableMeals />
       {isModal && (
-        <div
-          className={classes.backdrop}
-          onClick={() => {
-            setIsModal(false);
-          }}
-        >
+        <div className={classes.backdrop}>
           <div className={classes.modal}>
-            <Cart  isActive={setIsModal} />
+            <Cart isActive={setIsModal} />
           </div>
         </div>
       )}
