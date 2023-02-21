@@ -2,15 +2,7 @@
 import classes from "./Input.module.css";
 
 const Input = ({inputChangeHandler, number}) => {
-  // const [number, setNumber] = useState({
-  //   amount: 1
-  // });
-
-  // const inputChangeHandler = (event) => {
-  //   const{value, name} = event.target
-  //   setNumber((values) => ({ ...values, [name]: value }));
-  // };
-
+  
   return (
     <div className={classes.input}>
       <label>Amount</label>

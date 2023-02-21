@@ -4,7 +4,7 @@ import { useMealsContext } from "./MealsContext";
 
 
 const Cart = (props) => {
-  const { cartItems, dummyMeals, totalPrice } = useMealsContext();
+  const { cartItems, totalPrice, setCartItems, setTotalPrice } = useMealsContext();
 
   const onCloseHandler = () => {
     props.isActive();
@@ -27,7 +27,12 @@ const Cart = (props) => {
         <button className={classes["button--alt"]} onClick={onCloseHandler}>
           Close
         </button>
-        <button className={classes.button}>Order</button>
+        <button className={classes.button} onClick={()=> {
+          setCartItems([])
+          setTotalPrice(0)
+          props.isActive(false)
+          console.log("ordering . . .");
+        }}>Order</button>
       </div>
     </div>
   );

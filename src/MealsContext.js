@@ -60,11 +60,13 @@ const MealsProvider = ({ children }) => {
         setDummyMeals,
         addToCart,
         cartItems,
+        setCartItems,
         setSubmited,
         submited,
         bump,
         setBump,
         totalPrice,
+        setTotalPrice
       }}
     >
       {children}
