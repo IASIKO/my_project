@@ -2,12 +2,17 @@ import classes from "./Cart.module.css";
 import CartItem from "./CartItem";
 import { useMealsContext } from "./MealsContext";
 
+
 const Cart = (props) => {
-  const { cartItems } = useMealsContext();
+  const { cartItems, dummyMeals, totalPrice } = useMealsContext();
 
   const onCloseHandler = () => {
     props.isActive();
   };
+
+  // console.log("totaluri jami", totalPrice);
+
+
 
   return (
     <div className={classes["cart-items"]}>
@@ -16,7 +21,7 @@ const Cart = (props) => {
       ))}
       <div className={classes.total}>
         <span>Total Amount</span>
-        <span>$20</span>
+        <span>${totalPrice.toFixed(2)}</span>
       </div>
       <div className={classes.actions}>
         <button className={classes["button--alt"]} onClick={onCloseHandler}>
@@ -28,4 +33,8 @@ const Cart = (props) => {
   );
 };
 
+
+
+
 export default Cart;
+

@@ -36,17 +36,21 @@ const MealsProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState([]);
   const [submited, setSubmited] = useState(false);
   const [bump, setBump] = useState(false);
+  const [totalPrice, setTotalPrice] = useState(0);
 
   const addToCart = (meal, amount) => {
-    const itemFind = cartItems.findIndex((item)=> item.id === meal.id)
+    const itemFind = cartItems.findIndex((item) => item.id === meal.id);
     if (itemFind > -1) {
-      cartItems[itemFind] = {id: meal.id, amount: cartItems[itemFind].amount + parseInt(amount)}
-      // console.log(typeof cartItems[itemFind].amount,typeof amount);
-
+      cartItems[itemFind] = {
+        id: meal.id,
+        amount: cartItems[itemFind].amount + parseInt(amount),
+      };
     } else {
-      const newItem = {id: meal.id, amount: parseInt(amount)}
-      setCartItems([...cartItems, newItem]);
+      const newItem = { id: meal.id, amount: parseInt(amount) };
+      setCartItems([...cartItems, { ...meal, amount , newItem} ]);
+      // console.log("sachmelebi", meal, "inputvalue", amount,"id da inputvalue", newItem);
     }
+    setTotalPrice(totalPrice + meal.price * amount);
   };
 
   return (
@@ -60,6 +64,7 @@ const MealsProvider = ({ children }) => {
         submited,
         bump,
         setBump,
+        totalPrice,
       }}
     >
       {children}
