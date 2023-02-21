@@ -38,25 +38,25 @@ const MealsProvider = ({ children }) => {
   const [bump, setBump] = useState(false);
   const [totalPrice, setTotalPrice] = useState(0);
 
-  const addToCart = (meal, amount) => {
-    const itemFind = cartItems.findIndex((item) => item.id === meal.id);
+  const addToCart = (item, amount) => {
+    const itemFind = cartItems.findIndex((cartItem) => cartItem.id === item.id);
     if (itemFind > -1) {
       cartItems[itemFind] = {
-        id: meal.id,
+        id: item.id,
         amount: cartItems[itemFind].amount + parseInt(amount),
       };
     } else {
-      const newItem = { id: meal.id, amount: parseInt(amount) };
-      setCartItems([...cartItems, { ...meal, amount, newItem }]);
+      const newItem = { id: item.id, amount: parseInt(amount) };
+      setCartItems([...cartItems, { ...item, amount, newItem }]);
     }
-    setTotalPrice(totalPrice + meal.price * amount);
+    setTotalPrice(totalPrice + item.price * amount);
   };
 
   const removeFromCart = (item) => {
     const newCartItems = cartItems.filter(
       (cartItem) => cartItem.id !== item.id
     );
-    console.log(newCartItems);
+    // console.log(newCartItems);
     setCartItems(newCartItems);
   };
 
@@ -67,6 +67,7 @@ const MealsProvider = ({ children }) => {
     );
     newCartItems[itemIndex].amount++;
     setCartItems(newCartItems);
+    setTotalPrice(totalPrice + item.price);
   };
 
   const decrementItem = (item) => {
@@ -80,6 +81,7 @@ const MealsProvider = ({ children }) => {
     } else {
       removeFromCart(item);
     }
+    setTotalPrice(totalPrice - item.price);
   };
 
   return (
