@@ -50,6 +50,7 @@ const MealsProvider = ({ children }) => {
       setCartItems([...cartItems, { ...item, amount, newItem }]);
     }
     setTotalPrice(totalPrice + item.price * amount);
+
   };
 
   const removeFromCart = (item) => {
@@ -61,27 +62,33 @@ const MealsProvider = ({ children }) => {
   };
 
   const incrementItem = (item) => {
-    const newCartItems = [...cartItems];
-    const itemIndex = newCartItems.findIndex(
+    const newCartItems = [...cartItems]
+    const itemIndex = dummyMeals.findIndex(
       (cartItem) => cartItem.id === item.id
     );
-    newCartItems[itemIndex].amount++;
+    const itemI = newCartItems.findIndex(
+      (cartItem) => cartItem.id === item.id
+    );
+    newCartItems[itemI].amount++;
     setCartItems(newCartItems);
-    setTotalPrice(totalPrice + item.price);
+    setTotalPrice(totalPrice + dummyMeals[itemIndex].price);
   };
 
   const decrementItem = (item) => {
     const newCartItems = [...cartItems];
-    const itemIndex = newCartItems.findIndex(
+    const itemIndex = dummyMeals.findIndex(
       (cartItem) => cartItem.id === item.id
     );
-    if (newCartItems[itemIndex].amount > 1) {
-      newCartItems[itemIndex].amount--;
+    const itemI = newCartItems.findIndex(
+      (cartItem) => cartItem.id === item.id
+    );
+    if (newCartItems[itemI].amount > 1) {
+      newCartItems[itemI].amount--;
       setCartItems(newCartItems);
     } else {
       removeFromCart(item);
     }
-    setTotalPrice(totalPrice - item.price);
+    setTotalPrice(totalPrice - dummyMeals[itemIndex].price);
   };
 
   return (
