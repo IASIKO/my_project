@@ -47,10 +47,39 @@ const MealsProvider = ({ children }) => {
       };
     } else {
       const newItem = { id: meal.id, amount: parseInt(amount) };
-      setCartItems([...cartItems, { ...meal, amount , newItem} ]);
-      // console.log("sachmelebi", meal, "inputvalue", amount,"id da inputvalue", newItem);
+      setCartItems([...cartItems, { ...meal, amount, newItem }]);
     }
     setTotalPrice(totalPrice + meal.price * amount);
+  };
+
+  const removeFromCart = (item) => {
+    const newCartItems = cartItems.filter(
+      (cartItem) => cartItem.id !== item.id
+    );
+    console.log(newCartItems);
+    setCartItems(newCartItems);
+  };
+
+  const incrementItem = (item) => {
+    const newCartItems = [...cartItems];
+    const itemIndex = newCartItems.findIndex(
+      (cartItem) => cartItem.id === item.id
+    );
+    newCartItems[itemIndex].amount++;
+    setCartItems(newCartItems);
+  };
+
+  const decrementItem = (item) => {
+    const newCartItems = [...cartItems];
+    const itemIndex = newCartItems.findIndex(
+      (cartItem) => cartItem.id === item.id
+    );
+    if (newCartItems[itemIndex].amount > 1) {
+      newCartItems[itemIndex].amount--;
+      setCartItems(newCartItems);
+    } else {
+      removeFromCart(item);
+    }
   };
 
   return (
@@ -66,7 +95,10 @@ const MealsProvider = ({ children }) => {
         bump,
         setBump,
         totalPrice,
-        setTotalPrice
+        setTotalPrice,
+        removeFromCart,
+        incrementItem,
+        decrementItem,
       }}
     >
       {children}

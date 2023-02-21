@@ -18,7 +18,6 @@ const MealItemForm = (props) => {
     event.preventDefault();
     setSubmited(true)
     addToCart(props.item, number)
-    // console.log( "Number", number);
     setNumber(1)
   };
 

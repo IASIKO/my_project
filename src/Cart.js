@@ -10,9 +10,6 @@ const Cart = (props) => {
     props.isActive();
   };
 
-  // console.log("totaluri jami", totalPrice);
-
-
 
   return (
     <div className={classes["cart-items"]}>

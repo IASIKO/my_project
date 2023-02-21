@@ -16,7 +16,7 @@ function App() {
       <AvailableMeals />
       {isModal && (
         <div className={classes.backdrop}>
-          <div className={classes.modal}>
+          <div className={classes.modal} >
             <Cart isActive={setIsModal}/>
           </div>
         </div>

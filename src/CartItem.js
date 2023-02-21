@@ -2,7 +2,16 @@ import classes from "./CartItem.module.css";
 import { useMealsContext } from "./MealsContext";
 
 const CartItem = (props) => {
-const {dummyMeals} = useMealsContext()
+  const { dummyMeals, incrementItem, decrementItem } =
+    useMealsContext();
+
+  const onRemove = () => {
+    decrementItem(props.item);
+  };
+
+  const onAdd = () => {
+    incrementItem(props.item);
+  };
 
   const meal = dummyMeals.find((i) => props.item.id === i.id);
   const price = `$${meal.price.toFixed(2)}`;
@@ -17,8 +26,8 @@ const {dummyMeals} = useMealsContext()
         </div>
       </div>
       <div className={classes.actions}>
-        <button onClick={props.onRemove}>−</button>
-        <button onClick={props.onAdd}>+</button>
+        <button onClick={onRemove}>−</button>
+        <button onClick={onAdd}>+</button>
       </div>
     </li>
   );
