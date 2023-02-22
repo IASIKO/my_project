@@ -6,9 +6,6 @@ const Cart = (props) => {
   const { cartItems, totalPrice, setCartItems, setTotalPrice } =
     useMealsContext();
 
-  const onCloseHandler = () => {
-    props.isActive();
-  };
 
   return (
     <div className={classes["cart-items"]}>
@@ -20,7 +17,7 @@ const Cart = (props) => {
         <span>${totalPrice.toFixed(2)}</span>
       </div>
       <div className={classes.actions}>
-        <button className={classes["button--alt"]} onClick={onCloseHandler}>
+        <button className={classes["button--alt"]} onClick={props.onClose}>
           Close
         </button>
         <button
@@ -28,7 +25,7 @@ const Cart = (props) => {
           onClick={() => {
             setCartItems([]);
             setTotalPrice(0);
-            props.isActive(false);
+            props.onClose(false);
             console.log("ordering . . .");
           }}
         >

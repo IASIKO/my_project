@@ -6,21 +6,34 @@ import MealsProvider from "./MealsContext";
 import MealsSummary from "./MealsSummary";
 import classes from "./Modal.module.css";
 
+const style = {
+  backgroundColor: "rgba(0, 0, 0, 0.75)",
+};
+
 function App() {
   const [isModal, setIsModal] = useState(false);
 
+  const handleCloseCart = () => {
+    setIsModal(false);
+  };
+
   return (
     <MealsProvider>
-      <Header isActive={setIsModal} />
-      <MealsSummary />
-      <AvailableMeals />
-      {isModal && (
-        <div className={classes.backdrop}>
-          <div className={classes.modal} >
-            <Cart isActive={setIsModal}/>
+      <div style={style}>
+        <Header isActive={setIsModal} />
+        <MealsSummary />
+        <AvailableMeals />
+        {isModal && (
+          <div className={classes.backdrop} onClick={handleCloseCart}>
+            <div
+              className={classes.modal}
+              onClick={(event) => event.stopPropagation()}
+            >
+              <Cart onClose={handleCloseCart} />
+            </div>
           </div>
-        </div>
-      )}
+        )}
+      </div>
     </MealsProvider>
   );
 }

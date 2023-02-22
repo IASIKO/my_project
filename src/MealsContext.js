@@ -50,25 +50,21 @@ const MealsProvider = ({ children }) => {
       setCartItems([...cartItems, { ...item, amount, newItem }]);
     }
     setTotalPrice(totalPrice + item.price * amount);
-
   };
 
   const removeFromCart = (item) => {
     const newCartItems = cartItems.filter(
       (cartItem) => cartItem.id !== item.id
     );
-    // console.log(newCartItems);
     setCartItems(newCartItems);
   };
 
   const incrementItem = (item) => {
-    const newCartItems = [...cartItems]
+    const newCartItems = [...cartItems];
     const itemIndex = dummyMeals.findIndex(
       (cartItem) => cartItem.id === item.id
     );
-    const itemI = newCartItems.findIndex(
-      (cartItem) => cartItem.id === item.id
-    );
+    const itemI = newCartItems.findIndex((cartItem) => cartItem.id === item.id);
     newCartItems[itemI].amount++;
     setCartItems(newCartItems);
     setTotalPrice(totalPrice + dummyMeals[itemIndex].price);
@@ -79,9 +75,7 @@ const MealsProvider = ({ children }) => {
     const itemIndex = dummyMeals.findIndex(
       (cartItem) => cartItem.id === item.id
     );
-    const itemI = newCartItems.findIndex(
-      (cartItem) => cartItem.id === item.id
-    );
+    const itemI = newCartItems.findIndex((cartItem) => cartItem.id === item.id);
     if (newCartItems[itemI].amount > 1) {
       newCartItems[itemI].amount--;
       setCartItems(newCartItems);
@@ -90,6 +84,8 @@ const MealsProvider = ({ children }) => {
     }
     setTotalPrice(totalPrice - dummyMeals[itemIndex].price);
   };
+
+  // console.log();
 
   return (
     <MealsContext.Provider
