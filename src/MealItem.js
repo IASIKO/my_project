@@ -3,7 +3,7 @@ import classes from "./MealItem.module.css";
 import MealItemForm from "./MealItemForm";
 
 const MealItem = (props) => {
-  return (
+  return ( 
     <div className={classes.meal}>
       <h3>
         <span>{props.mealInfo.name}</span>
